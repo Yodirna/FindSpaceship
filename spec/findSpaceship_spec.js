@@ -29,9 +29,9 @@ describe("Find Spaceship", function () {
     expect(result).toEqual("Spaceship lost forever.");
   });
 
-  it('should return "map is empty" if map is empty', function () {
+  it('should return "Map is empty" if map is empty', function () {
     const map = "";
     const result = searchmap.searchmap(map);
-    expect(result).toEqual("Spaceship lost forever.");
+    expect(result).toEqual("Map is empty!");
   });
 });
