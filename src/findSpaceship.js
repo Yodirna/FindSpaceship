@@ -2,18 +2,22 @@
 function FindSpaceship() {}
 
 FindSpaceship.prototype.searchmap = function (map) {
-  if (!map) return "Map is empty!";
+  // Check if the map is empty
+  if (!map || map.trim() === "") {
+    return "Map is empty!";
+  }
 
-  if (map == "") return "Map is empty!";
+  // Process the map to find the spaceship
+  const rows = map.split('\n');
+  for (let y = 0; y < rows.length; y++) {
+    const x = rows[y].indexOf('X');
+    if (x !== -1) {
+      // Coordinates are found, return them in the format [x, height-y-1]
+      // to adjust for the coordinate system with the bottom left as [0, 0]
+      return [x, rows.length - y - 1];
+    }
+  }
 
-  if (
-    map ==
-    "..........\n" +
-      "..........\n" +
-      "..........\n" +
-      "..........\n" +
-      "..........\n" +
-      ".........."
-  )
-    return "Spaceship lost forever.";
+  // If no spaceship is found
+  return "Spaceship lost forever.";
 };
