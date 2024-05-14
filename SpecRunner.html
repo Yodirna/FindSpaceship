@@ -1,56 +1,84 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+    <head>
+        <title>Jasmine Spec Runner</title>
 
-<title>Jasmine Spec Runner</title>
+        <link
+            rel="shortcut icon"
+            type="image/png"
+            href="lib/jasmine-1.1.0/jasmine_favicon.png"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="lib/jasmine-1.1.0/jasmine.css"
+        />
+        <script
+            type="text/javascript"
+            src="lib/jasmine-1.1.0/jasmine.js"
+        ></script>
+        <script
+            type="text/javascript"
+            src="lib/jasmine-1.1.0/jasmine-html.js"
+        ></script>
+        <script
+            type="text/javascript"
+            src="lib/jquery-1.7.1/jquery-1.7.1.js"
+        ></script>
+        <script
+            type="text/javascript"
+            src="lib/jasmine-jquery-1.3.1/jasmine-jquery-1.3.1.js"
+        ></script>
+        <script
+            type="text/javascript"
+            src="lib/jasmine-ajax/mock-ajax.js"
+        ></script>
 
-<link rel="shortcut icon" type="image/png" href="lib/jasmine-1.1.0/jasmine_favicon.png">
+        <!-- include source files here... -->
+        <script type="text/javascript" src="src/string_calculator.js"></script>
+        <script type="text/javascript" src="src/findSpaceship.js"></script>
+        <!-- Added -->
 
-<link rel="stylesheet" type="text/css" href="lib/jasmine-1.1.0/jasmine.css">
-<script type="text/javascript" src="lib/jasmine-1.1.0/jasmine.js"></script>
-<script type="text/javascript" src="lib/jasmine-1.1.0/jasmine-html.js"></script>
-<script type="text/javascript" src="lib/jquery-1.7.1/jquery-1.7.1.js"></script>
-<script type="text/javascript" src="lib/jasmine-jquery-1.3.1/jasmine-jquery-1.3.1.js"></script>
-<script type="text/javascript" src="lib/jasmine-ajax/mock-ajax.js"></script>
+        <!-- include spec files here... -->
+        <script
+            type="text/javascript"
+            src="spec/string_calculator_spec.js"
+        ></script>
+        <script
+            type="text/javascript"
+            src="spec/findSpaceship_spec.js"
+        ></script>
+        <!-- Added -->
 
-<!-- include source files here... -->
-<script type="text/javascript" src="src/string_calculator.js"></script>
+        <script type="text/javascript">
+            (function () {
+                jasmine.getFixtures().fixturesPath = "spec";
+                var jasmineEnv = jasmine.getEnv();
+                jasmineEnv.updateInterval = 1000;
 
-<!-- include spec files here... -->
-<script type="text/javascript" src="spec/string_calculator_spec.js"></script>
+                var trivialReporter = new jasmine.TrivialReporter();
 
-<script type="text/javascript">
-  (function() {
-    jasmine.getFixtures().fixturesPath = 'spec'
-    var jasmineEnv = jasmine.getEnv();
-    jasmineEnv.updateInterval = 1000;
+                jasmineEnv.addReporter(trivialReporter);
 
-    var trivialReporter = new jasmine.TrivialReporter();
+                jasmineEnv.specFilter = function (spec) {
+                    return trivialReporter.specFilter(spec);
+                };
 
-    jasmineEnv.addReporter(trivialReporter);
+                var currentWindowOnload = window.onload;
 
-    jasmineEnv.specFilter = function(spec) {
-      return trivialReporter.specFilter(spec);
-    };
+                window.onload = function () {
+                    if (currentWindowOnload) {
+                        currentWindowOnload();
+                    }
+                    execJasmine();
+                };
 
-    var currentWindowOnload = window.onload;
+                function execJasmine() {
+                    jasmineEnv.execute();
+                }
+            })();
+        </script>
+    </head>
 
-    window.onload = function() {
-      if (currentWindowOnload) {
-        currentWindowOnload();
-      }
-      execJasmine();
-    };
-
-    function execJasmine() {
-      jasmineEnv.execute();
-    }
-
-  })();
-</script>
-
-</head>
-
-<body>
-</body>
+    <body></body>
 </html>
